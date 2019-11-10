@@ -1,0 +1,15 @@
+<head>
+</head>
+<body>
+    <div id="text"></div>
+    <img id=image>
+    <script>
+        var t = new Date()/1000
+        for (i = 0; i<1000; i++){
+            fetch("/image")
+            .then(response=>{return response.text()})
+            .then(data=>{document.getElementById("image").src = 'data:image/jpeg;base64,' + data});
+        }
+        document.getElementById("text").innerText = String(1000/(new Date()/1000 - t))
+    </script>
+</body>

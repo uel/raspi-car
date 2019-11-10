@@ -1,0 +1,11 @@
+C:\Users\filip\Desktop\repos\raspi-car\webserver\bin\Debug\netcoreapp2.2\webserver.deps.json
+C:\Users\filip\Desktop\repos\raspi-car\webserver\bin\Debug\netcoreapp2.2\webserver.runtimeconfig.json
+C:\Users\filip\Desktop\repos\raspi-car\webserver\bin\Debug\netcoreapp2.2\webserver.runtimeconfig.dev.json
+C:\Users\filip\Desktop\repos\raspi-car\webserver\bin\Debug\netcoreapp2.2\webserver.dll
+C:\Users\filip\Desktop\repos\raspi-car\webserver\bin\Debug\netcoreapp2.2\webserver.pdb
+C:\Users\filip\Desktop\repos\raspi-car\webserver\obj\Debug\netcoreapp2.2\webserver.csprojAssemblyReference.cache
+C:\Users\filip\Desktop\repos\raspi-car\webserver\obj\Debug\netcoreapp2.2\webserver.csproj.CoreCompileInputs.cache
+C:\Users\filip\Desktop\repos\raspi-car\webserver\obj\Debug\netcoreapp2.2\webserver.AssemblyInfoInputs.cache
+C:\Users\filip\Desktop\repos\raspi-car\webserver\obj\Debug\netcoreapp2.2\webserver.AssemblyInfo.cs
+C:\Users\filip\Desktop\repos\raspi-car\webserver\obj\Debug\netcoreapp2.2\webserver.dll
+C:\Users\filip\Desktop\repos\raspi-car\webserver\obj\Debug\netcoreapp2.2\webserver.pdb
