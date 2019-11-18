@@ -1,15 +1,140 @@
 <head>
+    <style>
+    .button{
+        -webkit-user-select: none; /* Safari */        
+        -moz-user-select: none; /* Firefox */
+        -ms-user-select: none; /* IE10+/Edge */
+        user-select: none; /* Standard */
+        width: 10rem;
+        max-width: 50vw;
+        fill: snow;
+        stroke: black;
+    }
+    #arrow-container{
+        display: grid;
+        grid-template-rows: auto auto;
+        grid-template-columns: auto auto auto;
+        align-items: center;
+        justify-items: center;
+        position: absolute;
+        bottom: .5rem;
+        right: .5rem;
+    }
+    #image{
+        height: 100%;
+        overflow: hidden;
+        display: flex;
+        justify-content: center;
+    }
+    </style>
+    <script>
+        var up = 0;
+        var down = 0;
+        var left = 0;
+        var right = 0;
+
+        function sendCommand(command)
+        {
+            fetch('/command', {
+                method: 'POST',
+                body: JSON.stringify(command)
+                })
+        }
+
+        function Up(){
+            up = 1
+            setTimeout(function (){
+                if(up != 0)
+                {
+                    sendCommand({"command":0, "time":100})
+                    Up()
+                }
+            }, 100)
+        }
+
+        function Down(){
+            down = 1
+            setTimeout(function (){
+                if(down != 0)
+                {
+                    sendCommand({"command":1, "time":100})
+                    Down()
+                }
+            }, 100)
+        }
+
+        function Left(){
+            left = 1
+            setTimeout(function (){
+                if(left != 0)
+                {
+                    sendCommand({"command":2, "time":100})
+                    Left()
+                }
+            }, 100)
+        }
+
+        function Right(){
+            right = 1
+            setTimeout(function (){
+                if(right != 0)
+                {
+                    sendCommand({"command":3, "time":100})
+                    Right()
+                }
+            }, 100)
+        }
+
+        function mouseup(){
+            if(up != 0)
+            {
+                up = 0
+            }
+            if(down != 0)
+            {
+                down = 0
+            }
+            if(left != 0)
+            {
+                left = 0
+            }
+            if(right != 0)
+            {
+                right = 0
+            }
+        }
+    </script>
 </head>
 <body>
     <div id="text"></div>
     <img id=image>
+    <div id=arrow-container>
+        <img src="/Content/arrow-up.svg" class=button id=up style="grid-row: 1; grid-column: 2;">
+        <img src="/Content/arrow-down.svg" class=button id=down style="grid-row: 2; grid-column: 2;">
+        <img src="/Content/arrow-left.svg" class=button id=left style="grid-row: 1/3; grid-column: 1; position: relative; left: 5rem;">
+        <img src="/Content/arrow-right.svg" class=button id=right style="grid-row: 1/3; grid-column: 3;  position: relative; right: 5rem;">
+    </div>
+    
     <script>
-        var t = new Date()/1000
-        for (i = 0; i<1000; i++){
-            fetch("/image")
-            .then(response=>{return response.text()})
-            .then(data=>{document.getElementById("image").src = 'data:image/jpeg;base64,' + data});
+        document.getElementById("up").addEventListener("mousedown", Up)
+        document.getElementById("down").addEventListener("mousedown", Down)
+        document.getElementById("left").addEventListener("mousedown", Left)
+        document.getElementById("right").addEventListener("mousedown", Right)
+        document.body.addEventListener("mouseup", mouseup)
+
+        function updateImage (){
+            setTimeout(function(){
+                fetch("/image")
+                .then(response=>{return response.text()})
+                .then(data=>{
+                    if (data != "")
+                    {
+                        document.getElementById("image").src = 'data:image/jpeg;base64,' + data
+                    }
+                })
+                .then(updateImage());
+            }, 100);     
         }
-        document.getElementById("text").innerText = String(1000/(new Date()/1000 - t))
+        updateImage()
     </script>
 </body>
