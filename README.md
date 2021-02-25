@@ -1,4 +1,4 @@
 # raspi-car
-![]("/readme/car.gif")
+![]("readme/car.gif")
 ![]("")
 ![]("")
